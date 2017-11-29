@@ -1,0 +1,21 @@
+{
+  "name": "pm-plugin-fs",
+  "version": "1.0.0",
+  "description": "File sytem plugin for Productionmap.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProductionMap/pm-plugin-fileServer.git"
+  },
+  "author": "Productionmap team (Yehonatan Bitton, Roy Talyosef)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProductionMap/pm-plugin-fileServer/issues"
+  },
+  "homepage": "https://github.com/ProductionMap/pm-plugin-fileServer#readme",
+  "dependencies": {
+  }
+}

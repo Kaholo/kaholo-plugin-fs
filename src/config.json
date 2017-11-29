@@ -1,0 +1,91 @@
+{
+  "name": "FileSystem",
+  "type": "executer",
+  "imgUrl": "logo.png",
+  "execProgram": "node",
+  "main": "app.js",
+  "methods": [
+    {
+      "name": "copyPath",
+      "viewName": "Copy path (cp)",
+      "params": [
+        {
+          "name": "SOURCE",
+          "viewName": "Source Path",
+          "type": "string"
+        },
+        {
+          "name": "DESTINATION",
+          "viewName": "Destination path",
+          "type": "string"
+        },
+        {
+          "name": "FLAGS",
+          "viewName": "Flags",
+          "type": "string"
+        }
+
+      ],
+      "actionString": "cp FLAGS SOURCE"
+    },
+    {
+      "name": "createDirectory",
+      "viewName": "Create Directory (mkdir)",
+      "params": [
+        {
+          "name": "PATH",
+          "viewName": "Path",
+          "type": "string"
+        },
+        {
+          "name": "FLAGS",
+          "viewName": "Flags",
+          "type": "string"
+        }
+
+      ],
+      "actionString": "mkdir FLAGS PATH"
+    },
+    {
+      "name": "moveDirectory",
+      "viewName": "Move directory (mv)",
+      "params":
+      [
+        {
+          "name": "SOURCE_PATH",
+          "viewName": "Source Path",
+          "type": "string"
+        },
+        {
+          "name": "DEST_PATH",
+          "viewName": "Destination Path",
+          "type": "string"
+        },
+        {
+          "name": "FLAGS",
+          "viewName": "Flags",
+          "type": "string"
+        }
+      ],
+      "actionString": "mv FLAGS SOURCE_PATH DEST_PATH"
+    },
+    {
+      "name": "deleteDirectory",
+      "viewName": "Delete directory",
+      "params":
+      [
+        {
+          "name": "PATH",
+          "viewName": "Path",
+          "type": "string"
+        },
+        {
+          "name": "FLAGS",
+          "viewName": "Flags",
+          "type": "string"
+        }
+      ],
+      "actionString": "FLAGS PATH"
+    }
+  ]
+}
