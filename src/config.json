@@ -4,6 +4,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
+  "version": "0.0.1",
   "methods": [
     {
       "name": "copyPath",
@@ -24,7 +25,6 @@
           "viewName": "Flags",
           "type": "string"
         }
-
       ],
       "actionString": "cp FLAGS SOURCE"
     },
@@ -42,15 +42,13 @@
           "viewName": "Flags",
           "type": "string"
         }
-
       ],
       "actionString": "mkdir FLAGS PATH"
     },
     {
       "name": "moveDirectory",
       "viewName": "Move directory (mv)",
-      "params":
-      [
+      "params": [
         {
           "name": "SOURCE_PATH",
           "viewName": "Source Path",
@@ -72,8 +70,7 @@
     {
       "name": "deleteDirectory",
       "viewName": "Delete directory",
-      "params":
-      [
+      "params": [
         {
           "name": "PATH",
           "viewName": "Path",
@@ -90,8 +87,7 @@
     {
       "name": "exists",
       "viewName": "Is path exists",
-      "params":
-      [
+      "params": [
         {
           "name": "PATH",
           "viewName": "Path",
