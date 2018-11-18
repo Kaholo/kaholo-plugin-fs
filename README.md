@@ -1,2 +1,2 @@
-# pm-plugin-fs
-File system plugin from Productionmap
+# kaholo-plugin-fs
+File system plugin from Kaholo
