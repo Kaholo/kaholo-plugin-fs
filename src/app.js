@@ -1,75 +1,73 @@
 let exec = require('child_process').exec;
 let fs = require("fs");
-let q = require('q');
 
-function executeCMD(action) {
-    let deferred = q.defer();
-    let execString = action.method.actionString;
-    for (let i = 0; i < action.method.params.length; i++) {
-        let param = action.method.params[i].name;
-        if (action.params.hasOwnProperty(param)) {
-            execString = execString.replace(param, action.params[param]);
-        }
-        else {
-            execString = execString.replace(param, '');
-        }
+async function copyPath(action){
+    const source = (action.params.SOURCE || "").trim();
+    const dest = (action.params.DESTINATION || "").trim();
+    const flags = (action.params.FLAGS || "").trim();
+    if (!source || !dest){
+        throw "Either Source or Destination was not provided";
     }
-    console.log(execString);
-    exec(execString,
-        function (error, stdout, stderr) {
-
-            if (error || stderr) {
-                console.log(stderr);
-                return deferred.reject({ "error": stderr });
-            }
-            return deferred.resolve(stdout ? stdout : "Success");
-        }
-    );
-    return deferred.promise;
+    const cmd = /^win/.test(process.platform) ? "copy" : "cp"; // check if windows or not
+    return executeCMD(`${cmd} ${flags} ${source} ${dest}`);
 }
 
+async function createDirectory(action){
+    const path = (action.params.PATH || "").trim();
+    const flags = (action.params.FLAGS || "").trim();
+    if (!path){
+        throw "Path was not provided";
+    }
+    return executeCMD(`mkdir ${flags} ${path}`);
+}
+
+async function moveDirectory(action){
+    const source = (action.params.SOURCE_PATH || "").trim();
+    const dest = (action.params.DEST_PATH || "").trim();
+    const flags = (action.params.FLAGS || "").trim();
+    if (!source || !dest){
+        throw "Either Source or Destination was not provided";
+    }
+    return executeCMD(`mv ${flags} ${source} ${dest}`);
+}
 
 function deleteDirectory(action) {
-    let deferred = q.defer();
-    let execString = action.method.actionString;
-    for (let i = 0; i < action.method.params.length; i++) {
-        let param = action.method.params[i].name;
-        if (action.params.hasOwnProperty(param)) {
-            execString = execString.replace(param, action.params[param]);
-        }
-        else {
-            execString = execString.replace(param, '');
-        }
+    const path = (action.params.PATH || "").trim();
+    const flags = (action.params.FLAGS || "").trim();
+    if (!path){
+        throw "Path was not provided";
     }
-    // check if os is windows
-    execString = /^win/.test(process.platform) ? "rmdir " + execString : "rm " + execString;
-    exec(execString,
-        function (error, stdout, stderr) {
-            console.log(stdout);
-            if (error || stderr) {
-                console.log(stderr);
-                return deferred.reject({ "error": stderr });
-            }
-            return deferred.resolve(stdout ? stdout : "Deleted directory");
-        }
-    );
-    return deferred.promise;
+    const cmd = /^win/.test(process.platform) ? "rmdir" : "rm"; // check if os is windows
+    return executeCMD(`${cmd} ${flags} ${path}`);
 }
 
 function pathExsits(action) {
+    const path = (action.params.PATH || "").trim();
+    if (!path){
+        throw "Path was not provided";
+    }
+    return fs.existsSync(path);
+}
+
+// helpers
+
+async function executeCMD(execString){
+    console.log(execString);
     return new Promise((resolve, reject) => {
-        let path = action.params.PATH;
-        fs.exists(path, function (exists) {
-            return resolve({ "res": exists })
+        exec(execString, function (error, stdout, stderr) {
+            if (error || stderr) {
+                console.log(error || stderr);
+                return reject(error || stderr );
+            }
+            return resolve(stdout ? stdout : "Success");
         });
     });
 }
 
-
 module.exports = {
-    copyPath: executeCMD,
-    createDirectory: executeCMD,
-    moveDirectory: executeCMD,
+    copyPath: copyPath,
+    createDirectory: createDirectory,
+    moveDirectory: moveDirectory,
     deleteDirectory: deleteDirectory,
     exists: pathExsits
 };

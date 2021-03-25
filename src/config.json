@@ -4,11 +4,11 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "methods": [
     {
       "name": "copyPath",
-      "viewName": "Copy path (cp)",
+      "viewName": "Copy Path(cp)",
       "params": [
         {
           "name": "SOURCE",
@@ -17,7 +17,7 @@
         },
         {
           "name": "DESTINATION",
-          "viewName": "Destination path",
+          "viewName": "Destination Path",
           "type": "string"
         },
         {
@@ -25,12 +25,11 @@
           "viewName": "Flags",
           "type": "string"
         }
-      ],
-      "actionString": "cp FLAGS SOURCE"
+      ]
     },
     {
       "name": "createDirectory",
-      "viewName": "Create Directory (mkdir)",
+      "viewName": "Create Directory(mkdir)",
       "params": [
         {
           "name": "PATH",
@@ -42,12 +41,11 @@
           "viewName": "Flags",
           "type": "string"
         }
-      ],
-      "actionString": "mkdir FLAGS PATH"
+      ]
     },
     {
       "name": "moveDirectory",
-      "viewName": "Move directory (mv)",
+      "viewName": "Move Directory(mv)",
       "params": [
         {
           "name": "SOURCE_PATH",
@@ -64,12 +62,11 @@
           "viewName": "Flags",
           "type": "string"
         }
-      ],
-      "actionString": "mv FLAGS SOURCE_PATH DEST_PATH"
+      ]
     },
     {
       "name": "deleteDirectory",
-      "viewName": "Delete directory",
+      "viewName": "Delete Directory(rmdir)",
       "params": [
         {
           "name": "PATH",
@@ -81,12 +78,11 @@
           "viewName": "Flags",
           "type": "string"
         }
-      ],
-      "actionString": "FLAGS PATH"
+      ]
     },
     {
       "name": "exists",
-      "viewName": "Is path exists",
+      "viewName": "Path Exists",
       "params": [
         {
           "name": "PATH",
