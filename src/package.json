@@ -16,6 +16,5 @@
     "url": "https://github.com/Kaholo/kaholo-plugin-fileServer/issues"
   },
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

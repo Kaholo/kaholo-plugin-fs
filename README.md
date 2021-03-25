@@ -25,7 +25,7 @@ Move a directory from the source path to destination. Uses mv command.
 3. Flags(string)**optional**
 
 ## Delete Directory
-Delete the directory in the specified path. Uses rmdir command.
+Delete the directory in the specified path. Only works if Directory is empty. Uses rmdir command.
 
 ### Parameters
 1. Path(string)**required**

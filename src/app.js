@@ -1,57 +1,93 @@
-let exec = require('child_process').exec;
-let fs = require("fs");
+const exec = require('child_process').exec;
+const fs = require("fs");
 
 async function copyPath(action){
-    const source = (action.params.SOURCE || "").trim();
-    const dest = (action.params.DESTINATION || "").trim();
+    let source = (action.params.SOURCE || "").trim();
+    let dest = (action.params.DESTINATION || "").trim();
     const flags = (action.params.FLAGS || "").trim();
     if (!source || !dest){
         throw "Either Source or Destination was not provided";
     }
-    const cmd = /^win/.test(process.platform) ? "copy" : "cp"; // check if windows or not
-    return executeCMD(`${cmd} ${flags} ${source} ${dest}`);
+    let cmd = "";
+    if (/^win/.test(process.platform)){ // check if OS is Windows
+        source = source.replace(/\//g, "\\");
+        dest = dest.replace(/\//g, "\\");
+        cmd = "copy";
+    }
+    else {
+        cmd = "cp";
+    }
+    return executeCMD(cmd, [flags, source, dest]);
 }
 
 async function createDirectory(action){
-    const path = (action.params.PATH || "").trim();
+    let path = (action.params.PATH || "").trim();
     const flags = (action.params.FLAGS || "").trim();
-    if (!path){
+    if (!path){ 
         throw "Path was not provided";
     }
-    return executeCMD(`mkdir ${flags} ${path}`);
+    if (/^win/.test(process.platform)){ // check if OS is Windows
+        path = path.replace(/\//g, "\\");
+    }
+    return executeCMD("mkdir", [flags, path]);
 }
 
 async function moveDirectory(action){
-    const source = (action.params.SOURCE_PATH || "").trim();
-    const dest = (action.params.DEST_PATH || "").trim();
+    let source = (action.params.SOURCE_PATH || "").trim();
+    let dest = (action.params.DEST_PATH || "").trim();
     const flags = (action.params.FLAGS || "").trim();
     if (!source || !dest){
         throw "Either Source or Destination was not provided";
     }
-    return executeCMD(`mv ${flags} ${source} ${dest}`);
+    let cmd = "";
+    if (/^win/.test(process.platform)){ // check if OS is Windows
+        source = source.replace(/\//g, "\\");
+        dest = dest.replace(/\//g, "\\");
+        cmd = "move";
+    }
+    else {
+        cmd = "mv";
+    }
+    return executeCMD(cmd, [flags, source, dest]);
 }
 
 function deleteDirectory(action) {
-    const path = (action.params.PATH || "").trim();
+    let path = (action.params.PATH || "").trim();
     const flags = (action.params.FLAGS || "").trim();
     if (!path){
         throw "Path was not provided";
     }
-    const cmd = /^win/.test(process.platform) ? "rmdir" : "rm"; // check if os is windows
-    return executeCMD(`${cmd} ${flags} ${path}`);
+    let cmd = "";
+    if (/^win/.test(process.platform)){ // check if OS is Windows
+        path = path.replace(/\//g, "\\");
+        cmd = "rmdir";
+    }
+    else {
+        cmd = "rm";
+    }
+    return executeCMD(cmd, [flags, path]);
 }
 
 function pathExsits(action) {
-    const path = (action.params.PATH || "").trim();
+    let path = (action.params.PATH || "").trim();
     if (!path){
         throw "Path was not provided";
     }
-    return fs.existsSync(path);
+    if (/^win/.test(process.platform)){ // check if OS is Windows
+        path = path.replace(/\//g, "\\");
+    }
+    return new Promise((resolve, reject) => {
+        fs.access(path, (err) => {
+            if (err) return resolve(false);
+            return resolve(true);
+        });
+    });
 }
 
 // helpers
 
-async function executeCMD(execString){
+async function executeCMD(cmd, params){
+    const execString = `${cmd} ${params.filter((p) => p).join(" ")}`;
     console.log(execString);
     return new Promise((resolve, reject) => {
         exec(execString, function (error, stdout, stderr) {
