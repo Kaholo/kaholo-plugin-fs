@@ -1,21 +1,20 @@
 {
   "name": "kaholo-plugin-fs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "File sytem plugin for Kaholo.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Kaholo team",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kaholo/kaholo-plugin-fileServer.git"
   },
-  "author": "Kaholo team",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Kaholo/kaholo-plugin-fileServer/issues"
   },
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
