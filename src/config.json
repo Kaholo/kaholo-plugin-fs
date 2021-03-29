@@ -4,78 +4,68 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "methods": [
     {
-      "name": "copyPath",
-      "viewName": "Copy Path(cp)",
+      "name": "copy",
+      "viewName": "Copy File/Directory",
       "params": [
         {
-          "name": "SOURCE",
+          "name": "source",
           "viewName": "Source Path",
           "type": "string"
         },
         {
-          "name": "DESTINATION",
+          "name": "destination",
           "viewName": "Destination Path",
           "type": "string"
         },
         {
-          "name": "FLAGS",
-          "viewName": "Flags",
-          "type": "string"
+          "name": "noOverwrite",
+          "viewName": "No Overwrite",
+          "type": "boolean"
         }
       ]
     },
     {
       "name": "createDirectory",
-      "viewName": "Create Directory(mkdir)",
+      "viewName": "Create Directory",
       "params": [
         {
-          "name": "PATH",
+          "name": "path",
           "viewName": "Path",
-          "type": "string"
-        },
-        {
-          "name": "FLAGS",
-          "viewName": "Flags",
           "type": "string"
         }
       ]
     },
     {
-      "name": "moveDirectory",
-      "viewName": "Move Directory(mv)",
+      "name": "move",
+      "viewName": "Move File/Directory",
       "params": [
         {
-          "name": "SOURCE_PATH",
+          "name": "source",
           "viewName": "Source Path",
           "type": "string"
         },
         {
-          "name": "DEST_PATH",
+          "name": "destination",
           "viewName": "Destination Path",
           "type": "string"
         },
         {
-          "name": "FLAGS",
-          "viewName": "Flags",
-          "type": "string"
+          "name": "overwrite",
+          "viewName": "Overwrite",
+          "type": "boolean"
         }
       ]
     },
     {
-      "name": "deleteDirectory",
-      "viewName": "Delete Directory(rmdir)",
+      "name": "deletePath",
+      "viewName": "Delete File/Directory",
       "params": [
         {
-          "name": "PATH",
+          "name": "path",
           "viewName": "Path",
-          "type": "string"
-        },
-        {
-          "name": "FLAGS",
-          "viewName": "Flags",
           "type": "string"
         }
       ]
@@ -85,7 +75,7 @@
       "viewName": "Path Exists",
       "params": [
         {
-          "name": "PATH",
+          "name": "path",
           "viewName": "Path",
           "type": "string"
         }

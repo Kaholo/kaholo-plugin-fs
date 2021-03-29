@@ -1,6 +1,6 @@
 {
   "name": "kaholo-plugin-fs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "File sytem plugin for Kaholo.",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,7 @@
     "url": "https://github.com/Kaholo/kaholo-plugin-fileServer/issues"
   },
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
-  "dependencies": {}
+  "dependencies": {
+    "fs-extra": "^9.1.0"
+  }
 }
