@@ -7,12 +7,12 @@ async function copy(action){
     if (!source || !dest){
         throw "Either Source or Destination was not provided";
     }
-    return fs.copySync(source, dest, { overwrite : overwrite });
+    return fs.copy(source, dest, { overwrite : overwrite });
 }
 
 async function createDirectory(action){
     const path = (action.params.path || "").trim();
-    return fs.mkdirsSync(path);
+    return fs.mkdirs(path);
 }
 
 async function move(action){
@@ -23,17 +23,17 @@ async function move(action){
     if (!source || !dest){
         throw "Either Source or Destination was not provided";
     }
-    return fs.moveSync(source, dest, { overwrite : overwrite });
+    return fs.move(source, dest, { overwrite : overwrite });
 }
 
 async function deletePath(action) {
     const path = (action.params.path || "").trim();
-    return fs.removeSync(path);
+    return fs.remove(path);
 }
 
 async function exists(action) {
     const path = (action.params.path || "").trim();
-    return fs.pathExistsSync(path);
+    return fs.pathExists(path);
 }
 
 module.exports = {
