@@ -35,7 +35,7 @@ Returns does the path specified exists or not.
 ### Parameters
 1. Path (string) **required**
 
-## Method SCP Action Exists(Remote Download/Upload)
+## Method SCP Action (Remote Download/Upload)
 Use SSH To download or upload files from remote hosts. You can download\upload either a file or a directory.
 
 ### Parameters
