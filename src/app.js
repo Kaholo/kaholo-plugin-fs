@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const { getScpClient } = require("./helpers");
 
 async function copy(action){
     const source = (action.params.source || "").trim();
@@ -36,10 +37,33 @@ async function exists(action) {
     return fs.pathExists(path);
 }
 
+async function scpAction(action){
+    const {actionType, localPath, remotePath} = action.params;
+    if (!actionType || !localPath || !remotePath) throw "Missing one of the required parameters";
+    const client = await getScpClient(action.params);
+    switch (actionType){
+        case "Download File":
+            await client.downloadFile(remotePath, localPath);
+            return "Success";
+        case "Download Directory":
+            await client.downloadDir(remotePath, localPath);
+            return "Success";
+        case "Upload File":
+            await client.uploadFile(localPath, remotePath);
+            return "Success";
+        case "Upload Directory":
+            await client.uploadDir(localPath, remotePath);
+            return "Success";
+        default: 
+            throw "Unknown Action Type";
+    }
+}
+
 module.exports = {
     copy,
     createDirectory,
     move,
     deletePath,
-    exists
+    exists,
+    scpAction
 };
