@@ -4,7 +4,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "methods": [
     {
       "name": "copy",
@@ -77,6 +77,70 @@
         {
           "name": "path",
           "viewName": "Path",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "scpAction",
+      "viewName": "SCP Action(Remote Download/Upload)",
+      "params": [
+        {
+          "name": "host",
+          "viewName": "Host URL",
+          "type": "string"
+        },
+        {
+          "name": "username",
+          "viewName": "SSH Username",
+          "type": "string"
+        },
+        {
+          "name": "privateKey",
+          "viewName": "SSH Private Key",
+          "type": "vault"
+        },
+        {
+          "name": "keyPath",
+          "viewName": "SSH Private Key Path",
+          "type": "string"
+        },
+        {
+          "name": "passphrase",
+          "viewName": "SSH Private Key Passphrase",
+          "type": "vault"
+        },
+        {
+          "name": "actionType",
+          "viewName": "SCP Action Type",
+          "type": "options",
+          "options": [
+            {
+              "id": "Download File",
+              "name": "Download File"
+            },
+            {
+              "id": "Download Directory",
+              "name": "Download Directory"
+            },
+            {
+              "id": "Upload File",
+              "name": "Upload File"
+            },
+            {
+              "id": "Upload Directory",
+              "name": "Upload Directory"
+            }
+          ]
+        },
+        {
+          "name": "localPath",
+          "viewName": "Local Path",
+          "type": "string"
+        },
+        {
+          "name": "remotePath",
+          "viewName": "Remote Path",
           "type": "string"
         }
       ]
