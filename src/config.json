@@ -4,7 +4,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "methods": [
     {
       "name": "copy",
@@ -88,6 +88,11 @@
         {
           "name": "host",
           "viewName": "Host URL",
+          "type": "string"
+        },
+        {
+          "name": "port",
+          "viewName": "Port",
           "type": "string"
         },
         {
