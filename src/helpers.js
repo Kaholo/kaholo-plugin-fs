@@ -8,7 +8,7 @@ async function getScpClient(params){
                         fs.readFileSync(params.keyPath) : undefined);
     return Client({
         host: params.host,
-        port: 22,
+        port: params.port ? parseInt(params.port) : 22,
         username: params.username,
         privateKey: privateKey,
         passphrase: params.passphrase,
