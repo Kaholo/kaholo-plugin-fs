@@ -35,7 +35,7 @@ Returns does the path specified exists or not.
 ### Parameters
 1. Path (string) **required**
 
-## Method SCP Action Exists(Remote Download/Upload)
+## Method SCP Action (Remote Download/Upload)
 Use SSH To download or upload files from remote hosts. You can download\upload either a file or a directory.
 
 ### Parameters
@@ -52,4 +52,4 @@ Use SSH To download or upload files from remote hosts. You can download\upload e
 * Upload File
 * Upload Directory
 8. Local Path (String) **Required** - The path of the local file/directory. In case of an upload action, specified file or directory must exist in the local agent this method was called from, and is uploaded to the host. In case of a download, the remote file\directory will be downloaded to the specified path.
-9. Remote Path (String )**Required** - The path of the remote file/directory. In case of an upload action, this will be the path the file/directory will be uploaded to. In case of a download, the specified path must exist in the remote host, and the file\directory will be downloaded to the local path.
+9. Remote Path (String) **Required** - The path of the remote file/directory. In case of an upload action, this will be the path the file/directory will be uploaded to. In case of a download, the specified path must exist in the remote host, and the file\directory will be downloaded to the local path.
