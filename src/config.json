@@ -1,5 +1,6 @@
 {
   "name": "FileSystem",
+  "viewName": "File System",
   "type": "executer",
   "imgUrl": "logo.png",
   "execProgram": "node",
@@ -9,6 +10,12 @@
     "FILES",
     "CORE"
   ],
+  "keywords": [
+    "file system",
+    "directory",
+    "file",
+    "path"
+    ],
   "methods": [
     {
       "name": "copy",
@@ -81,13 +88,14 @@
         {
           "name": "path",
           "viewName": "Path",
-          "type": "string"
+          "type": "string",
+          "description": "Check whether the specified path exists or not."
         }
       ]
     },
     {
       "name": "scpAction",
-      "viewName": "SCP Action(Remote Download/Upload)",
+      "viewName": "SCP Action (Remote Download/Upload)",
       "params": [
         {
           "name": "host",
