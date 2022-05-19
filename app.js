@@ -3,60 +3,60 @@ const kaholoPluginLibrary = require("kaholo-plugin-library");
 const { getScpClient } = require("./helpers");
 
 function copy(params) {
-  const source = params.source.trim();
-  const dest = params.destination.trim();
+  const sourcePath = params.source.trim();
+  const destinationPath = params.destination.trim();
   const overwrite = !params.noOverwrite;
 
-  return fs.copy(source, dest, { overwrite });
+  return fs.copy(sourcePath, destinationPath, { overwrite });
 }
 
 function createDirectory(params) {
-  const path = params.path.trim();
+  const directoryPath = params.path.trim();
 
-  return fs.mkdirs(path);
+  return fs.mkdirs(directoryPath);
 }
 
 function move(params) {
-  const source = params.source.trim();
-  const dest = params.destination.trim();
+  const sourcePath = params.source.trim();
+  const destinationPath = params.destination.trim();
   const overwrite = !params.noOverwrite;
 
-  return fs.move(source, dest, { overwrite });
+  return fs.move(sourcePath, destinationPath, { overwrite });
 }
 
 function deletePath(params) {
-  const path = params.path.trim();
+  const trimmedPath = params.path.trim();
 
-  return fs.remove(path);
+  return fs.remove(trimmedPath);
 }
 
 function exists(params) {
-  const path = params.path.trim();
+  const trimmedPath = params.path.trim();
 
-  return fs.pathExists(path);
+  return fs.pathExists(trimmedPath);
 }
 
 async function scpAction(params) {
-  const { actionType, localPath, remotePath } = params;
-  const client = await getScpClient(params);
+  const {
+    actionType,
+    localPath,
+    remotePath,
+  } = params;
+  const scpClient = await getScpClient(params);
 
   switch (actionType) {
     case "Download File":
-      await client.downloadFile(remotePath, localPath);
-      return "Success";
-
+      await scpClient.downloadFile(remotePath, localPath);
+      break;
     case "Download Directory":
-      await client.downloadDir(remotePath, localPath);
-      return "Success";
-
+      await scpClient.downloadDir(remotePath, localPath);
+      break;
     case "Upload File":
-      await client.uploadFile(localPath, remotePath);
-      return "Success";
-
+      await scpClient.uploadFile(localPath, remotePath);
+      break;
     case "Upload Directory":
-      await client.uploadDir(localPath, remotePath);
-      return "Success";
-
+      await scpClient.uploadDir(localPath, remotePath);
+      break;
     default:
       throw new Error("Unknown Action Type");
   }
