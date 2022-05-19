@@ -1,20 +1,23 @@
-const { Client, ScpClient } = require('node-scp');
+const { Client } = require("node-scp");
+const fs = require("fs/promises");
 
-/***
- * @returns {Promise<ScpClient>} Builds SCP Client
- ***/
-async function getScpClient(params){
-    const privateKey =  params.privateKey || (params.keyPath ? 
-                        fs.readFileSync(params.keyPath) : undefined);
-    return Client({
-        host: params.host,
-        port: params.port ? parseInt(params.port) : 22,
-        username: params.username,
-        privateKey: privateKey,
-        passphrase: params.passphrase,
-    });
+/**
+ * Builds SCP Client
+ * @returns {Promise<ScpClient>}
+*/
+async function getScpClient(params) {
+  const privateKey = params.privateKey || (
+    params.keyPath && await fs.readFile(params.keyPath)
+  );
+  return Client({
+    host: params.host,
+    port: params.port ? parseInt(params.port, 10) : 22,
+    username: params.username,
+    privateKey,
+    passphrase: params.passphrase,
+  });
 }
 
 module.exports = {
-    getScpClient
+  getScpClient,
 };
