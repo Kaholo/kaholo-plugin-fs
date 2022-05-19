@@ -32,13 +32,14 @@ function deletePath(params) {
 
 function exists(params) {
   const path = params.path.trim();
+
   return fs.pathExists(path);
 }
 
 async function scpAction(params) {
   const { actionType, localPath, remotePath } = params;
-
   const client = await getScpClient(params);
+
   switch (actionType) {
     case "Download File":
       await client.downloadFile(remotePath, localPath);
