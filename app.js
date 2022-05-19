@@ -1,52 +1,44 @@
 const fs = require("fs-extra");
+const kaholoPluginLibrary = require("kaholo-plugin-library");
 const { getScpClient } = require("./helpers");
 
-async function copy(action) {
-  const source = (action.params.source || "").trim();
-  const dest = (action.params.destination || "").trim();
-  const overwrite = !action.params.noOverwrite;
-
-  if (!source || !dest) {
-    throw new Error("Either Source or Destination was not provided");
-  }
+function copy(params) {
+  const source = params.source.trim();
+  const dest = params.destination.trim();
+  const overwrite = !params.noOverwrite;
 
   return fs.copy(source, dest, { overwrite });
 }
 
-async function createDirectory(action) {
-  const path = (action.params.path || "").trim();
+function createDirectory(params) {
+  const path = params.path.trim();
+
   return fs.mkdirs(path);
 }
 
-async function move(action) {
-  const source = (action.params.source || "").trim();
-  const dest = (action.params.destination || "").trim();
-  const overwrite = !action.params.noOverwrite;
+function move(params) {
+  const source = params.source.trim();
+  const dest = params.destination.trim();
+  const overwrite = !params.noOverwrite;
 
-  if (!source || !dest) {
-    throw new Error("Either Source or Destination was not provided");
-  }
   return fs.move(source, dest, { overwrite });
 }
 
-async function deletePath(action) {
-  const path = (action.params.path || "").trim();
+function deletePath(params) {
+  const path = params.path.trim();
+
   return fs.remove(path);
 }
 
-async function exists(action) {
-  const path = (action.params.path || "").trim();
+function exists(params) {
+  const path = params.path.trim();
   return fs.pathExists(path);
 }
 
-async function scpAction(action) {
-  const { actionType, localPath, remotePath } = action.params;
+async function scpAction(params) {
+  const { actionType, localPath, remotePath } = params;
 
-  if (!actionType || !localPath || !remotePath) {
-    throw new Error("Missing one of the required parameters");
-  }
-
-  const client = await getScpClient(action.params);
+  const client = await getScpClient(params);
   switch (actionType) {
     case "Download File":
       await client.downloadFile(remotePath, localPath);
@@ -69,11 +61,11 @@ async function scpAction(action) {
   }
 }
 
-module.exports = {
+module.exports = kaholoPluginLibrary.bootstrap({
   copy,
   createDirectory,
   move,
   deletePath,
   exists,
   scpAction,
-};
+});

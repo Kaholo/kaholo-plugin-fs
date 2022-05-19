@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
   "dependencies": {
     "fs-extra": "9.1.0",
+    "kaholo-plugin-library": "github:Kaholo/kaholo-plugin-library#v1.1.1",
     "node-scp": "0.0.15"
   },
   "devDependencies": {
