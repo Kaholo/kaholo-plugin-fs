@@ -113,7 +113,8 @@
         {
           "name": "port",
           "viewName": "Port",
-          "type": "int"
+          "type": "int",
+          "default": 22
         },
         {
           "name": "username",

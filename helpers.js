@@ -8,7 +8,7 @@ async function getScpClient(params) {
 
   return ScpClient({
     host: params.host,
-    port: params.port ?? 22,
+    port: params.port,
     username: params.username,
     privateKey,
     passphrase: params.passphrase,

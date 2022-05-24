@@ -2,38 +2,38 @@ const fs = require("fs-extra");
 const kaholoPluginLibrary = require("kaholo-plugin-library");
 const { getScpClient } = require("./helpers");
 
-function copy(params) {
-  const sourcePath = params.source.trim();
-  const destinationPath = params.destination.trim();
-  const overwrite = !params.noOverwrite;
+function copy({
+  source: sourcePath,
+  destination: destinationPath,
+  noOverwrite,
+}) {
+  const overwrite = !noOverwrite;
 
   return fs.copy(sourcePath, destinationPath, { overwrite });
 }
 
-function createDirectory(params) {
-  const directoryPath = params.path.trim();
-
+function createDirectory({
+  path: directoryPath,
+}) {
   return fs.mkdirs(directoryPath);
 }
 
-function move(params) {
-  const sourcePath = params.source.trim();
-  const destinationPath = params.destination.trim();
-  const overwrite = !params.noOverwrite;
+function move({
+  source: sourcePath,
+  destination: destinationPath,
+  noOverwrite,
+}) {
+  const overwrite = !noOverwrite;
 
   return fs.move(sourcePath, destinationPath, { overwrite });
 }
 
-function deletePath(params) {
-  const trimmedPath = params.path.trim();
-
-  return fs.remove(trimmedPath);
+function deletePath({ path }) {
+  return fs.remove(path);
 }
 
-function exists(params) {
-  const trimmedPath = params.path.trim();
-
-  return fs.pathExists(trimmedPath);
+function exists({ path }) {
+  return fs.pathExists(path);
 }
 
 async function scpAction(params) {
