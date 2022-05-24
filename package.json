@@ -1,10 +1,10 @@
 {
   "name": "kaholo-plugin-fs",
-  "version": "2.0.0",
   "description": "File sytem plugin for Kaholo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
   },
   "author": "Kaholo team",
   "repository": {
@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
   "dependencies": {
-    "fs-extra": "^9.1.0",
-    "node-scp": "^0.0.15"
+    "fs-extra": "9.1.0",
+    "kaholo-plugin-library": "github:Kaholo/kaholo-plugin-library#v1.2.0",
+    "node-scp": "0.0.15"
+  },
+  "devDependencies": {
+    "eslint": "8.15.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.26.0"
   }
 }

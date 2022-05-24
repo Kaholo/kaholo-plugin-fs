@@ -5,7 +5,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "category": [
     "FILES",
     "CORE"
@@ -15,7 +15,7 @@
     "directory",
     "file",
     "path"
-    ],
+  ],
   "methods": [
     {
       "name": "copy",
@@ -24,12 +24,14 @@
         {
           "name": "source",
           "viewName": "Source Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "destination",
           "viewName": "Destination Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "noOverwrite",
@@ -45,7 +47,8 @@
         {
           "name": "path",
           "viewName": "Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         }
       ]
     },
@@ -56,12 +59,14 @@
         {
           "name": "source",
           "viewName": "Source Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "destination",
           "viewName": "Destination Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "overwrite",
@@ -77,7 +82,8 @@
         {
           "name": "path",
           "viewName": "Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         }
       ]
     },
@@ -89,7 +95,8 @@
           "name": "path",
           "viewName": "Path",
           "type": "string",
-          "description": "Check whether the specified path exists or not."
+          "description": "Check whether the specified path exists or not.",
+          "required": true
         }
       ]
     },
@@ -100,12 +107,14 @@
         {
           "name": "host",
           "viewName": "Host URL",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "port",
           "viewName": "Port",
-          "type": "string"
+          "type": "int",
+          "default": 22
         },
         {
           "name": "username",
@@ -131,21 +140,22 @@
           "name": "actionType",
           "viewName": "SCP Action Type",
           "type": "options",
+          "required": true,
           "options": [
             {
-              "id": "Download File",
+              "id": "download_file",
               "name": "Download File"
             },
             {
-              "id": "Download Directory",
+              "id": "download_directory",
               "name": "Download Directory"
             },
             {
-              "id": "Upload File",
+              "id": "upload_file",
               "name": "Upload File"
             },
             {
-              "id": "Upload Directory",
+              "id": "upload_directory",
               "name": "Upload Directory"
             }
           ]
@@ -153,12 +163,14 @@
         {
           "name": "localPath",
           "viewName": "Local Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         {
           "name": "remotePath",
           "viewName": "Remote Path",
-          "type": "string"
+          "type": "string",
+          "required": true
         }
       ]
     }
