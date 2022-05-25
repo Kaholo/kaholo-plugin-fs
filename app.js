@@ -7,9 +7,7 @@ function copy({
   destination: destinationPath,
   noOverwrite,
 }) {
-  const overwrite = !noOverwrite;
-
-  return fs.copy(sourcePath, destinationPath, { overwrite });
+  return fs.copy(sourcePath, destinationPath, { overwrite: !noOverwrite });
 }
 
 function createDirectory({
@@ -21,10 +19,8 @@ function createDirectory({
 function move({
   source: sourcePath,
   destination: destinationPath,
-  noOverwrite,
+  overwrite,
 }) {
-  const overwrite = !noOverwrite;
-
   return fs.move(sourcePath, destinationPath, { overwrite });
 }
 
