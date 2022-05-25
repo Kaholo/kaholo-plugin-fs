@@ -21,7 +21,14 @@ function move({
   destination: destinationPath,
   overwrite,
 }) {
-  return fs.move(sourcePath, destinationPath, { overwrite });
+  return fs
+    .move(sourcePath, destinationPath, { overwrite })
+    .catch((error) => {
+      if (error.message === "dest already exists.") {
+        throw new Error("Directory already exists and Overwrite disabled.");
+      }
+      throw error;
+    });
 }
 
 function deletePath({ path }) {
