@@ -7,9 +7,7 @@ function copy({
   destination: destinationPath,
   noOverwrite,
 }) {
-  const overwrite = !noOverwrite;
-
-  return fs.copy(sourcePath, destinationPath, { overwrite });
+  return fs.copy(sourcePath, destinationPath, { overwrite: !noOverwrite });
 }
 
 function createDirectory({
@@ -21,11 +19,16 @@ function createDirectory({
 function move({
   source: sourcePath,
   destination: destinationPath,
-  noOverwrite,
+  overwrite,
 }) {
-  const overwrite = !noOverwrite;
-
-  return fs.move(sourcePath, destinationPath, { overwrite });
+  return fs
+    .move(sourcePath, destinationPath, { overwrite })
+    .catch((error) => {
+      if (error.message === "dest already exists.") {
+        throw new Error("Directory already exists and Overwrite disabled.");
+      }
+      throw error;
+    });
 }
 
 function deletePath({ path }) {
