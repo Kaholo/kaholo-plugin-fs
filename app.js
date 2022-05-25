@@ -10,10 +10,12 @@ function copy({
   return fs.copy(sourcePath, destinationPath, { overwrite: !noOverwrite });
 }
 
-function createDirectory({
+async function createDirectory({
   path: directoryPath,
 }) {
-  return fs.mkdirs(directoryPath);
+  const createdPath = await fs.mkdirs(directoryPath);
+
+  return createdPath === undefined ? "Directory Already Exists" : "Directory Created";
 }
 
 function move({
