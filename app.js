@@ -15,9 +15,13 @@ function copy({
 async function createDirectory({
   path: directoryPath,
 }) {
-  const createdPath = await fs.mkdirs(directoryPath);
+  const directoryExists = await fs.pathExists(directoryPath);
 
-  return createdPath === undefined ? "Directory Already Exists" : "Directory Created";
+  if (!directoryExists) {
+    await fs.mkdirs(directoryPath);
+  }
+
+  return directoryExists ? "Directory Already Exists" : "Directory Created";
 }
 
 function move({
