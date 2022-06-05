@@ -5,16 +5,19 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.2.2",
+  "version": "2.2.3",
+  "description": "Basic File System Operations - copy, move, delete, scp",
   "category": [
-    "FILES",
-    "CORE"
+    "Basic Tools"
   ],
   "keywords": [
     "file system",
     "directory",
     "file",
-    "path"
+    "path",
+    "mkdir",
+    "delete",
+    "scp"
   ],
   "methods": [
     {
