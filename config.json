@@ -84,6 +84,12 @@
           "viewName": "Path",
           "type": "string",
           "required": true
+        },
+        {
+          "name": "securely",
+          "viewName": "Use Secure Delete",
+          "description": "Before deleting, overwrite file/directory with gibberish data multiple times.",
+          "type": "boolean"
         }
       ]
     },
