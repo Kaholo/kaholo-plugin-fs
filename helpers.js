@@ -39,8 +39,9 @@ async function shredPath(path) {
       env: { DIR_PATH: path },
     }).then(({ stdout }) => stdout.trim().split("\n"));
 
-    return shredder.shred(filesList);
+    return filesList.length ? shredder.shred(filesList) : true;
   }
+
   return shredder.shred(path);
 }
 
