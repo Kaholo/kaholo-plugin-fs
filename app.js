@@ -15,7 +15,7 @@ async function createDirectory({
 }) {
   const createdPath = await fs.mkdirs(directoryPath);
 
-  return createdPath === undefined ? null : "Directory Created"; // If no directory was created, use default success message from kaholo-plugin-library
+  return createdPath === undefined ? "Directory Already Exists" : "Directory Created";
 }
 
 function move({
