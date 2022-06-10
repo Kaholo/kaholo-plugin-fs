@@ -44,8 +44,8 @@ async function deletePath({
   return fs.remove(path);
 }
 
-function exists({ path }) {
-  return fs.pathExists(path);
+async function exists({ path }) {
+  return { exists: await fs.pathExists(path) };
 }
 
 async function scpAction(params) {
