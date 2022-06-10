@@ -91,7 +91,7 @@
         {
           "name": "securely",
           "viewName": "Use Secure Delete",
-          "description": "Before deleting, overwrite file/directory with gibberish data multiple times.",
+          "description": "Overwrites files with random data before deleting.",
           "type": "boolean"
         }
       ]
