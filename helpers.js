@@ -36,8 +36,12 @@ async function shredPath(path) {
 
   if (pathStat.isDirectory()) {
     const filesList = await exec(LIST_ALL_FILES_COMMAND, {
-      env: { DIR_PATH: path },
-    }).then(({ stdout }) => stdout.trim().split("\n").filter(Boolean));
+      env: {
+        DIR_PATH: path,
+      },
+    }).then(({ stdout }) => (
+      stdout.trim().split("\n").filter(Boolean)
+    ));
 
     return filesList.length ? shredder.shred(filesList) : true;
   }
