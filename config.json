@@ -8,14 +8,16 @@
   "version": "2.3.0",
   "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
-    "FILES",
-    "CORE"
+    "Basic Tools"
   ],
   "keywords": [
     "file system",
     "directory",
     "file",
-    "path"
+    "path",
+    "mkdir",
+    "delete",
+    "scp"
   ],
   "methods": [
     {
