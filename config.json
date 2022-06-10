@@ -6,6 +6,7 @@
   "execProgram": "node",
   "main": "app.js",
   "version": "2.3.0",
+  "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
     "FILES",
     "CORE"
