@@ -38,7 +38,11 @@ async function deletePath({
   securely,
 }) {
   const pathExists = await fs.pathExists(path);
-  if (pathExists && securely) {
+  if (!pathExists) {
+    return "Path does not exist";
+  }
+
+  if (securely) {
     await shredPath(path);
   }
 
