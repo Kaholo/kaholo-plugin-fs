@@ -5,8 +5,8 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.2.3",
-  "description": "Basic File System Operations - copy, move, delete, scp",
+  "version": "2.3.0",
+  "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
     "Basic Tools"
   ],
@@ -87,6 +87,12 @@
           "viewName": "Path",
           "type": "string",
           "required": true
+        },
+        {
+          "name": "securely",
+          "viewName": "Use Secure Delete",
+          "description": "Overwrites files with random data before deleting.",
+          "type": "boolean"
         }
       ]
     },

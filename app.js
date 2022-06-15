@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
-const kaholoPluginLibrary = require("kaholo-plugin-library");
-const { getScpClient } = require("./helpers");
+const kaholoPluginLibrary = require("@kaholo/plugin-library");
+const { getScpClient, shredPath } = require("./helpers");
 
 function copy({
   source: sourcePath,
@@ -33,12 +33,24 @@ function move({
     });
 }
 
-function deletePath({ path }) {
+async function deletePath({
+  path,
+  securely,
+}) {
+  const pathExists = await fs.pathExists(path);
+  if (!pathExists) {
+    return "Path does not exist";
+  }
+
+  if (securely) {
+    await shredPath(path);
+  }
+
   return fs.remove(path);
 }
 
-function exists({ path }) {
-  return fs.pathExists(path);
+async function exists({ path }) {
+  return { exists: await fs.pathExists(path) };
 }
 
 async function scpAction(params) {
