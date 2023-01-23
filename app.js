@@ -62,16 +62,16 @@ async function scpAction(params) {
   const scpClient = await getScpClient(params);
 
   switch (actionType) {
-    case "Download File":
+    case "download_file":
       await scpClient.downloadFile(remotePath, localPath);
       break;
-    case "Download Directory":
+    case "download_directory":
       await scpClient.downloadDir(remotePath, localPath);
       break;
-    case "Upload File":
+    case "upload_file":
       await scpClient.uploadFile(localPath, remotePath);
       break;
-    case "Upload Directory":
+    case "upload_directory":
       await scpClient.uploadDir(localPath, remotePath);
       break;
     default:

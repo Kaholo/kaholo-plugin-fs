@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
   "dependencies": {
-    "@kaholo/plugin-library": "^1.4.0",
+    "@kaholo/plugin-library": "^2.1.2",
     "fs-extra": "9.1.0",
     "node-scp": "0.0.15",
     "shredfile": "1.1.0"
