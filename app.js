@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
 const kaholoPluginLibrary = require("@kaholo/plugin-library");
-const { getScpClient, shredPath } = require("./helpers");
+const { shredPath } = require("./helpers");
 
 function copy({
   source: sourcePath,
@@ -53,30 +53,15 @@ async function exists({ path }) {
   return { exists: await fs.pathExists(path) };
 }
 
-async function scpAction(params) {
-  const {
-    actionType,
-    localPath,
-    remotePath,
-  } = params;
-  const scpClient = await getScpClient(params);
-
-  switch (actionType) {
-    case "download_file":
-      await scpClient.downloadFile(remotePath, localPath);
-      break;
-    case "download_directory":
-      await scpClient.downloadDir(remotePath, localPath);
-      break;
-    case "upload_file":
-      await scpClient.uploadFile(localPath, remotePath);
-      break;
-    case "upload_directory":
-      await scpClient.uploadDir(localPath, remotePath);
-      break;
-    default:
-      throw new Error("Unknown Action Type");
-  }
+/**
+ * @description This method is deprecated, SSH plugin should be used instead
+ * @deprecated
+ */
+async function scpAction() {
+  console.info("This action is deprecated in favor of a new SSH Plugin, it's strongly advised to use it instead.");
+  console.info("All parameters are still there, so no data is lost. You can use them the same way in the SSH Plugin.");
+  console.info("SSH Plugin: <a href=\"https://github.com/Kaholo/kaholo-plugin-ssh\">https://github.com/Kaholo/kaholo-plugin-ssh</a>");
+  throw new Error("Method is deprecated");
 }
 
 module.exports = kaholoPluginLibrary.bootstrap({
