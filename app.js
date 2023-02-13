@@ -58,8 +58,7 @@ async function exists({ path }) {
  * @deprecated
  */
 async function scpAction() {
-  console.info("This action is deprecated in favor of a new SSH Plugin, it's strongly advised to use it instead.");
-  console.info("All parameters are still there, so no data is lost. You can use them the same way in the SSH Plugin.");
+  console.info("This action is deprecated. Please use the new SSH Plugin instead.");
   console.info("SSH Plugin: <a href=\"https://github.com/Kaholo/kaholo-plugin-ssh\">https://github.com/Kaholo/kaholo-plugin-ssh</a>");
   throw new Error("Method is deprecated");
 }
