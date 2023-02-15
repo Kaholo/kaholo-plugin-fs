@@ -19,7 +19,6 @@
   "dependencies": {
     "@kaholo/plugin-library": "^2.1.2",
     "fs-extra": "9.1.0",
-    "node-scp": "0.0.15",
     "shredfile": "1.1.0"
   },
   "devDependencies": {

@@ -111,7 +111,7 @@
     },
     {
       "name": "scpAction",
-      "viewName": "SCP Action (Remote Download/Upload)",
+      "viewName": "(Deprecated) SCP Action (Remote Download/Upload)",
       "params": [
         {
           "name": "host",
