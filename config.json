@@ -5,7 +5,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.3.0",
+  "version": "2.3.0-KP-1116",
   "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
     "Basic Tools"
@@ -28,18 +28,24 @@
           "name": "source",
           "viewName": "Source Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "path to file or directory to be copied",
+          "placeholder": "test/config/deployment.json"
         },
         {
           "name": "destination",
           "viewName": "Destination Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "path of the copy of the file or directory",
+          "placeholder": "prod/config/deployment.json"
         },
         {
           "name": "noOverwrite",
           "viewName": "No Overwrite",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false,
+          "description": "If selected, the copy will not overwrite existing files/directories."
         }
       ]
     },
@@ -51,7 +57,9 @@
           "name": "path",
           "viewName": "Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "path of directory to create",
+          "placeholder": "prod/config"
         }
       ]
     },
@@ -63,18 +71,24 @@
           "name": "source",
           "viewName": "Source Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "path to file or directory to be moved",
+          "placeholder": "autotest/run/results"
         },
         {
           "name": "destination",
           "viewName": "Destination Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "new path of the file or directory",
+          "placeholder": "staging/run/results"
         },
         {
           "name": "overwrite",
           "viewName": "Overwrite",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false,
+          "description": "If selected, existing files or directories will not be overwritten."
         }
       ]
     },
@@ -86,13 +100,16 @@
           "name": "path",
           "viewName": "Path",
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "path of file or directory to recursively delete.",
+          "placeholder": "test/webcache"
         },
         {
           "name": "securely",
           "viewName": "Use Secure Delete",
           "description": "Overwrites files with random data before deleting.",
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         }
       ]
     },
@@ -104,14 +121,14 @@
           "name": "path",
           "viewName": "Path",
           "type": "string",
-          "description": "Check whether the specified path exists or not.",
+          "description": "Check whether or not the specified path exists.",
           "required": true
         }
       ]
     },
     {
       "name": "scpAction",
-      "viewName": "(Deprecated) SCP Action (Remote Download/Upload)",
+      "viewName": "(Deprecated) SCP Action - use SSH plugin",
       "params": [
         {
           "name": "host",
