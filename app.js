@@ -1,5 +1,6 @@
 const fs = require("fs-extra");
 const kaholoPluginLibrary = require("@kaholo/plugin-library");
+
 const { shredPath } = require("./helpers");
 
 function copy({
@@ -34,19 +35,13 @@ function move({
 }
 
 async function deletePath({
-  path,
+  path: pathInfo,
   securely,
 }) {
-  const pathExists = await fs.pathExists(path);
-  if (!pathExists) {
-    return "Path does not exist";
-  }
-
   if (securely) {
-    await shredPath(path);
+    await shredPath(pathInfo.absolutePath);
   }
-
-  return fs.remove(path);
+  return fs.remove(pathInfo.absolutePath);
 }
 
 async function exists({ path }) {
