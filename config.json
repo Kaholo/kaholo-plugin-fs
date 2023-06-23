@@ -5,7 +5,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
     "Basic Tools"
