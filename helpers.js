@@ -1,37 +1,31 @@
-const fs = require("fs/promises");
-const ShredFile = require("shredfile");
+const childProcess = require("child_process");
+const util = require("util");
+const { helpers } = require("@kaholo/plugin-library");
 
-const exec = require("util").promisify(require("child_process").exec);
+const exec = util.promisify(childProcess.exec);
+const execFile = util.promisify(childProcess.execFile);
 
 const SHRED_ITERATIONS = 5;
-const LOCATE_SHRED_BINARY_COMMAND = "which shred";
 const LIST_ALL_FILES_COMMAND = "find $DIR_PATH -type f";
 
 async function shredPath(path) {
-  const shredBinaryPath = await exec(LOCATE_SHRED_BINARY_COMMAND).then(
-    ({ stdout }) => stdout.trim(),
-  );
-  const shredder = new ShredFile({
-    shredBinaryPath,
-    force: true,
-    iterations: SHRED_ITERATIONS,
-  });
+  const filesToRemove = [];
 
-  const pathStat = await fs.lstat(path);
-
-  if (pathStat.isDirectory()) {
-    const filesList = await exec(LIST_ALL_FILES_COMMAND, {
+  const pathInfo = await helpers.analyzePath(path);
+  if (pathInfo.type === "directory") {
+    const listedFiles = await exec(LIST_ALL_FILES_COMMAND, {
       env: {
         DIR_PATH: path,
       },
-    }).then(({ stdout }) => (
-      stdout.trim().split("\n").filter(Boolean)
-    ));
+    }).then(({ stdout }) => stdout.trim().split("\n").filter(Boolean));
 
-    return filesList.length ? shredder.shred(filesList) : true;
+    filesToRemove.push(...listedFiles);
+  } else {
+    filesToRemove.push(path);
   }
 
-  return shredder.shred(path);
+  const args = ["-n", SHRED_ITERATIONS, "-f", "-z"].concat(filesToRemove);
+  return execFile("shred", args);
 }
 
 module.exports = {

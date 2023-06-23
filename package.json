@@ -9,17 +9,16 @@
   "author": "Kaholo team",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kaholo/kaholo-plugin-fileServer.git"
+    "url": "git+https://github.com/Kaholo/kaholo-plugin-fs.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kaholo/kaholo-plugin-fileServer/issues"
+    "url": "https://github.com/Kaholo/kaholo-plugin-fs/issues"
   },
-  "homepage": "https://github.com/Kaholo/kaholo-plugin-fileServer#readme",
+  "homepage": "https://github.com/Kaholo/kaholo-plugin-fs#readme",
   "dependencies": {
-    "@kaholo/plugin-library": "^2.1.2",
-    "fs-extra": "9.1.0",
-    "shredfile": "1.1.0"
+    "@kaholo/plugin-library": "^2.3.1",
+    "fs-extra": "9.1.0"
   },
   "devDependencies": {
     "eslint": "8.15.0",

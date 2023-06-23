@@ -5,7 +5,7 @@
   "imgUrl": "logo.png",
   "execProgram": "node",
   "main": "app.js",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Move, Delete, Copy, and Create Files and Directories",
   "category": [
     "Basic Tools"
@@ -102,7 +102,11 @@
           "type": "string",
           "required": true,
           "description": "path of file or directory to recursively delete.",
-          "placeholder": "test/webcache"
+          "placeholder": "test/webcache",
+          "parserType": "filePath",
+          "parserOptions": {
+            "throwIfDoesntExist": true
+          }
         },
         {
           "name": "securely",
