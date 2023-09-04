@@ -1,14 +1,34 @@
 const fs = require("fs-extra");
+const path = require("path");
 const kaholoPluginLibrary = require("@kaholo/plugin-library");
 
 const { shredPath } = require("./helpers");
 
-function copy({
-  source: sourcePath,
-  destination: destinationPath,
+async function copy({
+  source,
+  destination,
   noOverwrite,
 }) {
-  return fs.copy(sourcePath, destinationPath, { overwrite: !noOverwrite });
+  let resolvedDestinationPath = destination.absolutePath;
+  if (destination.exists && noOverwrite) {
+    resolvedDestinationPath = path.resolve(
+      destination.absolutePath,
+      path.basename(source.absolutePath),
+    );
+  }
+
+  if (noOverwrite && await fs.pathExists(resolvedDestinationPath)) {
+    throw new Error("Destination directory exists but No Overwrite was specified.");
+  }
+
+  return fs.copy(
+    source.absolutePath,
+    resolvedDestinationPath,
+    {
+      overwrite: !noOverwrite,
+      errorOnExist: true,
+    },
+  );
 }
 
 async function createDirectory({
@@ -44,8 +64,8 @@ async function deletePath({
   return fs.remove(pathInfo.absolutePath);
 }
 
-async function exists({ path }) {
-  return { exists: await fs.pathExists(path) };
+async function exists({ path: pathToCheck }) {
+  return { exists: await fs.pathExists(pathToCheck) };
 }
 
 /**
