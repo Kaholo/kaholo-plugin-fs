@@ -30,7 +30,11 @@
           "type": "string",
           "required": true,
           "description": "path to file or directory to be copied",
-          "placeholder": "test/config/deployment.json"
+          "placeholder": "test/config/deployment.json",
+          "parserType": "filePath",
+          "parserOptions": {
+            "throwIfDoesntExist": true
+          }
         },
         {
           "name": "destination",
@@ -38,7 +42,8 @@
           "type": "string",
           "required": true,
           "description": "path of the copy of the file or directory",
-          "placeholder": "prod/config/deployment.json"
+          "placeholder": "prod/config/deployment.json",
+          "parserType": "filePath"
         },
         {
           "name": "noOverwrite",
