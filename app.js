@@ -39,19 +39,27 @@ async function createDirectory({
   return createdPath === undefined ? "Directory Already Exists" : "Directory Created";
 }
 
-function move({
-  source: sourcePath,
-  destination: destinationPath,
+async function move({
+  source,
+  destination,
   overwrite,
 }) {
-  return fs
-    .move(sourcePath, destinationPath, { overwrite })
-    .catch((error) => {
-      if (error.message === "dest already exists.") {
-        throw new Error("Directory already exists and Overwrite disabled.");
-      }
-      throw error;
-    });
+  let destinationPath = destination.absolutePath;
+  if (source.type === "directory" && destination.type === "file") {
+    throw new Error("Source Path is a directory but Destination Path is a file.");
+  }
+  if (source.absolutePath === destination.absolutePath) {
+    throw new Error("Source Path and Destination Path are the same.");
+  }
+  if (destination.type === "directory" && !overwrite) {
+    destinationPath = path.join(destinationPath, path.basename(source.absolutePath));
+  }
+
+  return fs.move(
+    source.absolutePath,
+    destinationPath,
+    { overwrite },
+  );
 }
 
 async function deletePath({
