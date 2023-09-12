@@ -78,7 +78,11 @@
           "type": "string",
           "required": true,
           "description": "path to file or directory to be moved",
-          "placeholder": "autotest/run/results"
+          "placeholder": "autotest/run/results",
+          "parserType": "filePath",
+          "parserOptions": {
+            "throwIfDoesntExist": true
+          }
         },
         {
           "name": "destination",
@@ -86,14 +90,15 @@
           "type": "string",
           "required": true,
           "description": "new path of the file or directory",
-          "placeholder": "staging/run/results"
+          "placeholder": "staging/run/results",
+          "parserType": "filePath"
         },
         {
           "name": "overwrite",
           "viewName": "Overwrite",
           "type": "boolean",
           "default": false,
-          "description": "If selected, existing files or directories will not be overwritten."
+          "description": "If selected, existing files or directories will be overwritten."
         }
       ]
     },
